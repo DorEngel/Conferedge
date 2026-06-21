@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dor Engel — Speaker Profile | ConferEdge</title>
+  <meta name="description" content="Book Dor Engel for your podcast. Mentalist, ex-cybersecurity, B2B event strategist. Stories, frameworks, and strong opinions about why most conference strategies are broken.">
+  <meta name="theme-color" content="#200842">
+  <!-- Open Graph (update og:url and og:image to your final published URL before sharing) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dor Engel — Speaker Profile | ConferEdge">
+  <meta property="og:description" content="Tech-fluent mentalist and B2B event strategist. Book Dor for your podcast or stage.">
+  <meta property="og:image" content="dor-engel-portrait.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ===== TOKENS ===== */
+    /* Brand Guide colors */
+    :root {
+      --deep-purple: #200842;
+      --magenta-pink: #d63e70;
+      --ice-white: #f6f7fb;
+      --graphite-grey: #3a3a4b;
+      --midnight-black: #050502;
+      --font-primary: 'Rajdhani', sans-serif;
+      --font-body: 'IBM Plex Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--graphite-grey);
+      background: #fff;
+      line-height: 1.6;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== UTILITY ===== */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--deep-purple);
+    }
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: var(--font-primary);
+      font-weight: 600;
+      font-size: 1.35rem;
+      color: #fff;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--magenta-pink); }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: var(--magenta-pink);
+      color: #fff !important;
+      padding: 10px 24px;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+    .nav-toggle span {
+      display: block; width: 22px; height: 1.5px;
+      background: #fff; margin: 5px 0;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: var(--ice-white);
+      padding: 80px 0 0;
+      color: var(--deep-purple);
+      overflow: visible;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+    }
+    .hero-text {
+      padding-bottom: 72px;
+    }
+    .hero-text h1 {
+      font-family: var(--font-primary);
+      font-size: 56px;
+      font-weight: 600;
+      line-height: 1.05;
+      margin-bottom: 3px;
+      color: var(--deep-purple);
+    }
+    .hero-subtitle {
+      font-family: var(--font-primary);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--deep-purple);
+      margin-bottom: 24px;
+    }
+    .hero-subtitle em {
+      font-style: italic;
+      color: var(--magenta-pink);
+    }
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--graphite-grey);
+      margin-bottom: 36px;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--magenta-pink);
+      color: #fff;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 16px;
+      padding: 12px 32px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .hero-cta:hover { opacity: 0.9; }
+
+    .hero-photo {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      position: relative;
+      z-index: 3;
+    }
+    .hero-photo img {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      object-fit: contain;
+      object-position: bottom;
+    }
+
+    /* ===== EVIDENCE ===== */
+    .evidence {
+      background: var(--deep-purple);
+      padding: 48px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .evidence-label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .logo-marquee {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 24px 48px;
+    }
+    .logo-marquee img {
+      height: 24px;
+      opacity: 0.55;
+      filter: brightness(0) invert(1);
+      transition: opacity 0.3s;
+    }
+    .logo-marquee img:hover { opacity: 0.9; }
+    .events-proof {
+      text-align: center;
+      margin-top: 24px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+    .events-proof strong {
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+    }
+
+    /* ===== BIO ===== */
+    .bio {
+      background: #fff;
+      padding: 96px 0;
+      color: var(--deep-purple);
+    }
+    .bio-content {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .bio-content p {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      color: var(--graphite-grey);
+    }
+    .bio-content p:last-child { margin-bottom: 0; }
+    .bio-content strong {
+      color: var(--deep-purple);
+      font-weight: 500;
+    }
+
+    /* ===== EPISODES ===== */
+    .episodes {
+      background: var(--deep-purple);
+      padding: 96px 0;
+    }
+    .episodes-grid {
+      display: grid;
+      grid-template-columns: 39fr 61fr;
+      gap: 24px;
+      margin-top: 36px;
+      align-items: stretch;
+    }
+    .episodes-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .episode-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      border: none;
+      transition: background 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .episodes-col .episode-card {
+      flex: 1;
+    }
+    .episode-card:hover {
+      background: rgba(255,255,255,0.12);
+    }
+    .episode-embed {
+      width: 100%;
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      overflow: hidden;
+      position: relative;
+    }
+    .episode-embed video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .unmute-btn {
+      position: absolute;
+      bottom: 33%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--magenta-pink);
+      border: none;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      animation: pulse-unmute 2s ease-in-out infinite;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .unmute-btn:hover {
+      transform: translateX(-50%) scale(1.05);
+    }
+    .unmute-btn.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    @keyframes pulse-unmute {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(214,62,112,0.4); }
+      50% { box-shadow: 0 0 0 10px rgba(214,62,112,0); }
+    }
+    .episode-info {
+      padding: 20px 24px;
+    }
+    .episode-type {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--magenta-pink);
+      margin-bottom: 4px;
+    }
+    .episode-title {
+      font-family: var(--font-primary);
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* ===== TOPICS ===== */
+    .topics {
+      background: #fff;
+      padding: 96px 0;
+      color: var(--deep-purple);
+    }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .topic-card {
+      background: #fff;
+      border: 1px solid rgba(58,58,75,0.1);
+      border-radius: 10px;
+      padding: 32px;
+      transition: border-color 0.3s;
+    }
+    .topic-card:hover {
+      border-color: rgba(214,62,112,0.3);
+    }
+    .topic-number {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 12px;
+      color: var(--magenta-pink);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .topic-title {
+      font-family: var(--font-primary);
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      color: var(--deep-purple);
+    }
+    .topic-pain {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--graphite-grey);
+      margin-bottom: 16px;
+      line-height: 1.55;
+    }
+    .topic-outcome {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--magenta-pink);
+      line-height: 1.55;
+    }
+    .topic-outcome::before {
+      content: "Your listeners get: ";
+      font-weight: 500;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: var(--deep-purple);
+      padding: 96px 0;
+    }
+    .cta-box {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .cta-box h2 {
+      font-family: var(--font-primary);
+      font-size: 45px;
+      font-weight: 600;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .cta-box p {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .cta-primary {
+      display: inline-block;
+      background: var(--magenta-pink);
+      color: #fff;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 16px;
+      padding: 12px 32px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .cta-primary:hover { opacity: 0.9; }
+    .cta-email {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+    .cta-email a {
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(214,62,112,0.5);
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .social-links a:hover { background: var(--magenta-pink); }
+    .social-links svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* ===== SECTION LABELS ===== */
+    .section-label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--magenta-pink);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-primary);
+      font-weight: 600;
+      font-size: 30px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .section-title--light { color: #fff; }
+    .section-title--dark { color: var(--deep-purple); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--deep-purple);
+      padding: 32px 0;
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      font-family: var(--font-body);
+      font-size: 12px;
+    }
+    .footer a {
+      color: var(--magenta-pink);
+      text-decoration: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .nav-inner { padding: 0 20px; }
+      .hero { padding: 100px 0 0; }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+        text-align: center;
+      }
+      .hero-text { padding-bottom: 0; text-align: center; }
+      .hero-text h1 { font-size: 38px; }
+      .hero-subtitle { font-size: 18px; }
+      .hero-photo { justify-content: center; }
+      .hero-photo img { max-width: 300px; }
+      .episodes-grid { grid-template-columns: 1fr; }
+      .episodes-col { gap: 24px; }
+      .topics-grid { grid-template-columns: 1fr; }
+      .topic-card { padding: 32px; }
+      .cta-box h2 { font-size: 32px; }
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: var(--deep-purple);
+        padding: 24px;
+        gap: 16px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+    }
+
+    /* Respect users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .unmute-btn { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="https://conferedge.com" class="nav-logo">Confer<span>E</span>dge</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#bio">About</a></li>
+        <li><a href="#topics">Topics</a></li>
+        <li><a href="#episodes">Media</a></li>
+        <li><a href="#contact" class="nav-cta">Book Dor</a></li>
+      </ul>
+      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- R  - RESULT-CENTRED HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1>Hi, I'm Dor</h1>
+          <p class="hero-subtitle">I used to hack systems for a living, <br><em>Now I hack attention.</em></p>
+          <p class="hero-tagline">
+            I'm a tech-fluent mentalist that helps b2b companies <em>win at conferences</em>. Whether it's on the show floor, on stage or in private meetings - I've got stories, frameworks, and opinions about why most event strategies are broken. <em>Let's talk about it.</em>
+          </p>
+          <a href="#contact" class="hero-cta">Book Me on Your Show</a>
+        </div>
+        <div class="hero-photo">
+          <picture>
+            <source srcset="dor-engel-portrait.webp" type="image/webp">
+            <img src="dor-engel-portrait.png" width="960" height="960" alt="Dor Engel - tech-fluent mentalist and B2B event strategist" fetchpriority="high" decoding="async">
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- E  - EVIDENCE & MENTIONS -->
+  <section class="evidence" id="evidence">
+    <div class="container">
+      <p class="evidence-label">Trusted by &amp; Performed for companies like:</p>
+      <div class="logo-marquee">
+        <img src="logos/zimark.svg" alt="Zimark" loading="lazy">
+        <img src="logos/descope.svg" alt="Descope" loading="lazy">
+        <img src="logos/doit.png" alt="DoiT" loading="lazy">
+        <img src="logos/imper.png" alt="Imper" loading="lazy">
+        <img src="logos/intel.svg" alt="Intel" loading="lazy">
+        <img src="logos/linx-security.webp" alt="Linx Security" loading="lazy">
+        <img src="logos/doorloop.svg" alt="DoorLoop" loading="lazy">
+        <img src="logos/solaredge.png" alt="SolarEdge" loading="lazy">
+        <img src="logos/teva.png" alt="Teva" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- V  - VOICE & STORY (Bio) -->
+  <section class="bio" id="bio">
+    <div class="container">
+      <div class="bio-content">
+        <p class="section-label">The Story</p>
+        <p>
+          I started in cybersecurity, building and breaking systems for startups. Then I became a professional mentalist. Weird combination, I know - but it turns out that understanding how technology works <strong>and</strong> how people think is a pretty useful combo.
+        </p>
+        <p>
+          These days I don't just perform; companies fly me to conferences around the world to deliver their messages in an original and entertaining way - I draw massive crowds, qualify leads mid-show, weave product messaging into mind-bending moments, and hand warm prospects directly to sales teams.
+        </p>
+        <p>
+          I run <strong>ConferEdge</strong>, where I help B2B tech companies stop treating conferences like an expensive lottery ticket and start seizing the opportunity of conferences as a massive pipeline channel. I've worked with cybersecurity startups, cloud infrastructure companies, logistics companies and everything in between. I've seen what works on the floor, what quietly bleeds budgets dry, and I'm happy to share all about it, no gatekeeping.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- E  - EPISODES & APPEARANCES -->
+  <section class="episodes" id="episodes">
+    <div class="container">
+      <p class="section-label">Episodes &amp; Appearances</p>
+      <h2 class="section-title section-title--light">Me, Doing My Thing</h2>
+      <div class="episodes-grid">
+
+        <div class="episode-card">
+          <div class="episode-embed">
+            <video id="speaking-video" muted loop playsinline preload="none" poster="speaking-clip-poster.jpg" data-src="speaking-clip.mp4"></video>
+            <button class="unmute-btn" id="unmute-btn" aria-label="Unmute video">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <span>Tap to unmute</span>
+            </button>
+          </div>
+          <div class="episode-info">
+            <p class="episode-type">Video</p>
+            <p class="episode-title">Dor Engel - Speaking Clip</p>
+          </div>
+        </div>
+
+        <div class="episodes-col">
+          <div class="episode-card">
+            <div class="episode-embed">
+              <video muted loop playsinline preload="none" poster="conferedge-showreel-poster.jpg" data-src="conferedge-showreel.mp4"></video>
+            </div>
+            <div class="episode-info">
+              <p class="episode-type">Video</p>
+              <p class="episode-title">ConferEdge Showreel</p>
+            </div>
+          </div>
+
+          <div class="episode-card">
+            <div class="episode-embed">
+              <video muted loop playsinline preload="none" poster="RSAC2026-poster.jpg" data-src="RSAC2026-LowRes.mp4"></video>
+            </div>
+            <div class="episode-info">
+              <p class="episode-type">Video</p>
+              <p class="episode-title">RSAC 2026</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="topics" id="topics">
+    <div class="container">
+      <p class="section-label">Speaking Topics</p>
+      <h2 class="section-title section-title--dark">Things I Love Talking About</h2>
+      <div class="topics-grid">
+
+        <div class="topic-card">
+          <p class="topic-number">Topic 01</p>
+          <h3 class="topic-title">5 Free Shifts That Drastically Increase Your Conference ROI</h3>
+          <p class="topic-pain">
+            I see this all the time: companies throw more money at events instead of rethinking their approach. Bigger booth, flashier swag, same mediocre results. The problem was never the budget.
+          </p>
+          <p class="topic-outcome">
+            Five zero-budget changes to booth strategy, staff behavior, and messaging that actually move the needle on qualified conversations and booked meetings.
+          </p>
+        </div>
+
+        <div class="topic-card">
+          <p class="topic-number">Topic 02</p>
+          <h3 class="topic-title">Followup Is Dead: Why Your Post-Event Emails Are Burning Pipeline</h3>
+          <p class="topic-pain">
+            Here's the uncomfortable truth: by the time you send that "great meeting you!" email, your prospect has 200 new business cards and zero memory of your booth. The window already closed.
+          </p>
+          <p class="topic-outcome">
+            A step-by-step playbook for creating pipeline <em>during</em> the event - so follow-up becomes a formality, not a Hail Mary.
+          </p>
+        </div>
+
+        <div class="topic-card">
+          <p class="topic-number">Topic 03</p>
+          <h3 class="topic-title">I Left a Career in Tech to Become a Mentalist  - Here's What I Learned</h3>
+          <p class="topic-pain">
+            Most people have a thing they'd rather be doing. Very few actually make the jump. I walked away from a comfortable cybersecurity career to become a professional mentalist  - and then built a business around it. It wasn't smooth, and it wasn't obvious.
+          </p>
+          <p class="topic-outcome">
+            An honest, no-fluff conversation about career pivots  - what it actually takes to leave the safe path, how to test your next thing before you leap, and why the skills from your "old life" are more transferable than you think.
+          </p>
+        </div>
+
+        <div class="topic-card">
+          <p class="topic-number">Topic 04</p>
+          <h3 class="topic-title">The Invisible Qualifier: Using Psychology to Separate Buyers from Browsers</h3>
+          <p class="topic-pain">
+            Badge scans don't tell you who's ready to buy  - they tell you who wanted free chocolate. Your sales team is wasting hours on people who were never going to convert, and missing the ones who were.
+          </p>
+          <p class="topic-outcome">
+            Mentalism-based techniques for reading body language, steering conversations, and spotting real buying signals  - so every minute on the floor actually counts.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- L  - LINKS & CTA -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <p class="section-label">Let's Do This</p>
+        <h2>Want Me on Your Show?</h2>
+        <p>
+          Let's jump on a quick 20-minute call. I'll come with topic angles tailored to your audience  - no generic pitches, I promise.
+        </p>
+        <div class="cta-buttons">
+          <a href="https://calendly.com/dorengel/20-minute-meeting-with-dor" class="cta-primary" target="_blank" rel="noopener noreferrer">Book a 20-Min Call</a>
+          <p class="cta-email">Prefer email? <a href="mailto:info@dorengel.com">info@dorengel.com</a></p>
+        </div>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/dor-engel/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://conferedge.com" target="_blank" rel="noopener noreferrer" aria-label="Website">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Dor Engel / ConferEdge. All Rights Reserved. &nbsp;|&nbsp; <a href="mailto:info@dorengel.com">info@dorengel.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var speakingVideo = document.getElementById('speaking-video');
+      var unmuteBtn = document.getElementById('unmute-btn');
+      var speakingUnmuted = false;
+
+      function loadVideo(video) {
+        if (video.dataset.src && !video.src) {
+          video.src = video.dataset.src;
+          video.load();
+        }
+      }
+
+      // Lazy-load + autoplay only when a clip is near/in view; pause when it leaves.
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var video = entry.target.querySelector('video');
+          if (!video) return;
+          if (entry.isIntersecting) {
+            loadVideo(video);
+            var p = video.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            video.pause();
+          }
+        });
+      }, { rootMargin: '200px 0px', threshold: 0.1 });
+
+      document.querySelectorAll('.episode-embed').forEach(function (embed) {
+        var video = embed.querySelector('video');
+        if (!video) return;
+        io.observe(embed);
+        if (video === speakingVideo) {
+          embed.addEventListener('mouseenter', function () { if (speakingUnmuted) video.setAttribute('controls', ''); });
+          embed.addEventListener('mouseleave', function () { video.removeAttribute('controls'); });
+        } else {
+          embed.addEventListener('mouseenter', function () { video.setAttribute('controls', ''); });
+          embed.addEventListener('mouseleave', function () { video.removeAttribute('controls'); });
+        }
+      });
+
+      if (unmuteBtn && speakingVideo) {
+        unmuteBtn.addEventListener('click', function () {
+          speakingVideo.muted = false;
+          speakingUnmuted = true;
+          unmuteBtn.classList.add('hidden');
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
