@@ -1,881 +1,1136 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dor Engel - Stop Crowds. Qualify Leads. Prove ROI.</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Nunito+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Nunito Sans', sans-serif;
-            background: #0f1117;
-            color: #ffffff;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        h1, h2, h3, h4, h5, h6, .nav-link, header > .max-w-7xl > a {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        /* Simplified background pattern */
-        .bg-pattern {
-            background: #0f1117;
-            position: relative;
-        }
-        
-        .bg-pattern::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.03) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        /* Hero video background */
-        .hero-video-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: translate(-50%, -50%);
-            z-index: -2;
-            filter: brightness(0.6) contrast(1.1) saturate(0.8);
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(15, 17, 23, 0.2) 100%);
-            z-index: -1;
-        }
-        
-        .hero-video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -3;
-            overflow: hidden;
-        }
-        
-        /* Glass pane for hero text */
-        .hero-glass-pane {
-            background: rgba(10, 12, 18, 0.25);
-            backdrop-filter: blur(12px) saturate(120%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* Mobile video enhancements */
-        @media (max-width: 768px) {
-            .hero-video-bg {
-                filter: brightness(0.6) contrast(1.2) saturate(1.1);
-            }
-            
-            .hero-overlay {
-                background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(15, 17, 23, 0.4) 100%);
-            }
-            
-            .hero-glass-pane {
-                background: rgba(0, 0, 0, 0.4);
-                backdrop-filter: blur(10px) saturate(120%);
-                padding: 2rem 1.5rem;
-                border-radius: 12px;
-            }
-        }
-        
-        /* Logo styling - Complete rewrite for uniformity */
-        .logo-container {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 140px;
-            height: 60px;
-            margin: 0 1.5rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            padding: 12px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .logo-container:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-        }
-        
-        .logo-image {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            filter: grayscale(1) contrast(1.2) brightness(0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .logo-container:hover .logo-image {
-            filter: none;
-        }
-        
-        /* Alternative approach: Pure white silhouettes */
-        .logo-white {
-            height: 2.5rem;
-            margin: 0 2.5rem;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-            filter: brightness(0) invert(1);
-        }
-        
-        .logo-white:hover {
-            opacity: 1;
-            transform: scale(1.05);
-            filter: none;
-        }
-        
-        /* Logo ticker styles */
-        .logo-ticker-container {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
+<title>ConferEdge — Engagement Engineering for B2B high-tech conferences</title>
+<meta name="description" content="ConferEdge builds booth engagement programmes for B2B tech conferences: a live, interactive performance with qualification built in. Full site coming soon.">
 
-        .logo-ticker-container::before,
-        .logo-ticker-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 100px;
-            height: 100%;
-            z-index: 2;
-        }
+<!--
+  ===========================================================================
+  ConferEdge — standalone holding page.
 
-        .logo-ticker-container::before {
-            left: 0;
-            background: linear-gradient(to left, rgba(15, 17, 23, 0), #0f1117);
-        }
+  Plain HTML. No build step, no framework, no dependency on the Astro site.
+  Upload this folder as-is; `index.html` plus `assets/` is the whole thing.
 
-        .logo-ticker-container::after {
-            right: 0;
-            background: linear-gradient(to right, rgba(15, 17, 23, 0), #0f1117);
-        }
-        
-        .logo-ticker-track {
-            display: flex;
-            width: fit-content;
-            animation: scroll 40s linear infinite;
-        }
-        
-        .logo-ticker-container:hover .logo-ticker-track {
-            animation-play-state: paused;
-        }
+  Regenerate the assets with:  node scripts/coming-soon-assets.mjs
 
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-        
-        /* Typography */
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #ffffff;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-        
-        .hero-title {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 900;
-            line-height: 0.95;
-            letter-spacing: -0.03em;
-            color: #ffffff;
-            text-shadow: none;
-        }
-        
-        .hero-title .gradient-text {
-            color: #ffffff;
-        }
-        
-        .gradient-text {
-            color: #ffffff;
-            position: relative;
-            z-index: 2;
-        }
-        
-        @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-            .gradient-text {
-                background: linear-gradient(135deg, #a855f7 0%, #06b6d4 35%, #ec4899 70%, #a855f7 100%);
-                background-clip: text;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-size: 200% 200%;
-                animation: gradient-shift 8s ease-in-out infinite;
-                filter: none;
-            }
-        }
-        
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        /* Card design */
-        .clean-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        .clean-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(139, 92, 246, 0.3);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-            transform: translateY(-2px);
-        }
-        
-        .code-font {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        .floating-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
-        }
-        
-        /* Button design */
-        .btn-primary {
-            background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
-            color: white;
-            padding: 16px 32px;
-            border-radius: 8px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #7c3aed 0%, #0891b2 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
-        }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            padding: 16px 32px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-        }
-        
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(139, 92, 246, 0.4);
-            transform: translateY(-1px);
-        }
-        
-        /* Table design */
-        .feature-table {
-            border-collapse: separate;
-            border-spacing: 0;
-            width: 100%;
-            border-radius: 16px;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.03);
-        }
-        
-        .feature-table th,
-        .feature-table td {
-            padding: 24px;
-            text-align: center;
-            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-        }
-        
-        .feature-table th {
-            background: rgba(139, 92, 246, 0.1);
-            font-weight: 700;
-            color: #ffffff;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .feature-table td:first-child {
-            text-align: left;
-            font-weight: 600;
-            color: #ffffff;
-        }
-        
-        .check-icon {
-            color: #10b981;
-            font-weight: bold;
-            font-size: 1.3rem;
-            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-        }
-        
-        .x-icon {
-            color: #ef4444;
-            font-weight: bold;
-            font-size: 1.3rem;
-            text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
-        }
-        
-        /* Navigation styling */
-        .nav-link {
-            color: #e5e7eb;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            text-decoration: none;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #8b5cf6, #06b6d4);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: #ffffff;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        /* Form styling */
-        .form-input {
-            width: 100%;
-            padding: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-            transition: all 0.3s ease;
-            font-size: 16px;
-        }
-        
-        .form-input::placeholder {
-            color: #9ca3af;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: #8b5cf6;
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
-            background: rgba(255, 255, 255, 0.08);
-        }
-        
-        /* Section backgrounds */
-        .section-bg {
-            background: #1a1d23;
-            position: relative;
-        }
-        
-        .section-bg-alt {
-            background: #0f1117;
-            position: relative;
-        }
-        
-        /* Simplified animated background */
-        .animated-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-            opacity: 0.3;
-        }
-        
-        .animated-bg::before {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-            filter: blur(40px);
-            animation: float-around 20s ease-in-out infinite;
-        }
-        
-        @keyframes float-around {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(100px, -50px); }
-            50% { transform: translate(50px, 100px); }
-            75% { transform: translate(-50px, 50px); }
-        }
+  ONE THING TO CHANGE BEFORE UPLOAD: the four absolute URLs below (canonical
+  and og:*) assume the page is served from https://conferedge.com/. If it goes
+  somewhere else, swap the origin — social previews and canonical are the only
+  things that break, and only if the domain is wrong.
 
-        /* Step section styling */
-        .step-card {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
-        }
-        
-        .step-desc {
-            color: #e5e7eb !important;
-            font-weight: 400 !important;
-        }
-        
-        /* Improved text contrast */
-        .text-gray-300 {
-            color: #f3f4f6 !important;
-        }
-        
-        .hero-desc {
-            color: #f9fafb !important;
-            font-size: 1.25rem;
-            font-weight: 400;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
-        }
-        
-        /* Better mobile text contrast */
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: clamp(2rem, 6vw, 3rem);
-                margin-bottom: 2rem;
-            }
-            
-            .hero-title {
-                font-size: clamp(2rem, 8vw, 4rem);
-                text-shadow: none;
-            }
-            
-            .text-gray-300 {
-                color: #ffffff !important;
-            }
-            
-            .hero-desc {
-                color: #ffffff !important;
-                font-size: 1.125rem;
-            }
-        }
-        
-        /* Remove hero text overlay that was causing issues */
-        .hero-text-overlay {
-            display: none;
-        }
-        
-        /* Partnership tiers styling */
-        .tier-card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .tier-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(139, 92, 246, 0.3);
-            transform: translateY(-2px);
-        }
-        
-        .tier-card h3 {
-            color: #ffffff;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .tier-card p {
-            color: #e5e7eb;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        /* Gallery improvements */
-        .gallery-item {
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Contact section improvements */
-        .contact-form {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 3rem;
-        }
-        
-        /* Footer improvements */
-        footer {
-            background: #0a0d12;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        footer p, footer a {
-            color: #9ca3af;
-        }
-        
-        footer a:hover {
-            color: #8b5cf6;
-        }
-    </style>
+  The two reels stream from Bunny (vz-0da96aab-a6a.b-cdn.net) over plain MP4
+  played by the browser's own <video>, not Bunny's iframe player. That keeps
+  the page first-party apart from the video bytes themselves, and it is the
+  only external host this page contacts. If the host enforces a CSP, it needs:
+      img-src 'self' https://vz-0da96aab-a6a.b-cdn.net data:;
+      media-src 'self' https://vz-0da96aab-a6a.b-cdn.net;
+  ===========================================================================
+-->
+<link rel="canonical" href="https://conferedge.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ConferEdge">
+<meta property="og:title" content="ConferEdge - Engagement Engineering for B2B high-tech conferences">
+<meta property="og:description" content="Booth engagement programmes for B2B tech conferences. Full site coming soon.">
+<meta property="og:url" content="https://conferedge.com/">
+<!-- The page's own hero, rendered as a 1200x630 card by scripts/coming-soon-assets.mjs:
+     same photograph, same wash, same crop, so the unfurled thumbnail is the
+     image the visitor then lands on. Dimensions are declared because several
+     scrapers reserve the space before they have fetched the file. -->
+<meta property="og:image" content="https://conferedge.com/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dor Engel performing to a crowd on a conference floor, under the ConferEdge wordmark and the line: At conferences you pay for opportunity. We turn it into pipeline.">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#200842">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<!--
+  Preloaded rather than left to the stylesheet to discover. Without this the
+  headline paints in the fallback face and then reflows ~80px taller when
+  Rajdhani arrives — a 0.15 CLS on its own.
+-->
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/rajdhani-700.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/rajdhani-600.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/plex-wght.woff2" crossorigin>
+
+<style>
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('assets/fonts/rajdhani-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('assets/fonts/rajdhani-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans Variable';
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+  src: url('assets/fonts/plex-wght.woff2') format('woff2');
+}
+
+/*
+ * Metric-matched fallbacks. Rajdhani is condensed and much narrower than any
+ * system sans, so the swap moves text by ~80px. These overrides make the
+ * fallback occupy close to the same box, leaving only a glyph change.
+ */
+@font-face {
+  font-family: 'Rajdhani Fallback';
+  src: local('Arial Narrow'), local('Helvetica Neue Condensed'), local('Arial');
+  size-adjust: 88%;
+  ascent-override: 96%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Plex Fallback';
+  src: local('Helvetica Neue'), local('Arial');
+  size-adjust: 104%;
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
+/* ==========================================================================
+   Tokens — the subset of src/styles/tokens.css this page uses.
+
+   Text colours are solid rather than alpha-over-background: several of the
+   mock's translucent values fail WCAG AA on light grounds. The brand magenta
+   #d63e70 is 4.39:1 on white, just under the 4.5:1 floor for small text, so it
+   stays as designed for fills and large display type and the tuned variants
+   carry anything smaller.
+   ========================================================================== */
+:root {
+  --ce-purple:        #200842;
+  --ce-magenta:       #d63e70;  /* fills, bars, rules, large type */
+  --ce-magenta-solid: #cc3868;  /* button grounds: white on it = 4.85:1 */
+  --ce-magenta-text:  #c22f60;  /* small text on light: 5.4:1 white */
+  --ce-magenta-text-dark: #e8628d; /* small text on purple: 5.4:1 */
+  --ce-magenta-hover: #a82a55;
+  --ce-magenta-light: #e8628d;
+  --ce-ice:           #f6f7fb;
+  --ce-black:         #050502;
+
+  --text-on-light:        #3a3a4b;
+  --text-on-light-muted:  #5c5c6b;
+  --text-on-light-label:  #4a3563;
+  --text-heading:         #200842;
+  --text-on-dark:         #f6f7fb;
+  --text-on-dark-muted:   rgba(246, 247, 251, 0.78);
+  --text-on-dark-faint:   rgba(246, 247, 251, 0.62);
+
+  --line-dark:      rgba(246, 247, 251, 0.14);
+  --line-dark-firm: rgba(246, 247, 251, 0.24);
+
+  --font-display: 'Rajdhani', 'Rajdhani Fallback', system-ui, sans-serif;
+  --font-body:    'IBM Plex Sans Variable', 'Plex Fallback', system-ui, -apple-system, sans-serif;
+
+  --step-hero:    clamp(2.75rem, 6.6vw, 6.5rem);
+  --step-section: clamp(2rem, 3.6vw, 3.625rem);
+  --step-body-lg: 1.1875rem;
+  --step-body:    1.0625rem;
+  --step-body-sm: 0.9375rem;
+  --step-eyebrow: 0.6875rem;
+
+  --tracking-eyebrow: 0.24em;
+  --tracking-tight:   -0.02em;
+
+  --container: 80rem;
+  --gutter:    clamp(1.25rem, 4vw, 2.5rem);
+  --section-y: clamp(4rem, 9vw, 7rem);
+
+  --radius:     0.875rem;
+  --radius-lg:  1.25rem;
+  --radius-pill: 999px;
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+/* Every CTA on this page is an in-page anchor, so the smooth scroll is the
+   single largest piece of motion here — it has to answer the preference. */
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--ce-ice);
+  color: var(--text-on-light);
+  font-family: var(--font-body);
+  font-size: var(--step-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--text-heading);
+  margin: 0;
+  text-wrap: balance;
+}
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+img, svg, video { display: block; max-width: 100%; }
+img, video { height: auto; }
+
+/*
+ * `:not(.btn)` is load-bearing. A CTA rendered as an <a> matches `.on-dark a`,
+ * which is more specific than `.btn--solid` — so without the exclusion the
+ * button text renders magenta-on-magenta and axe reports it as a contrast
+ * failure. The Astro site does not hit this because its button styles are
+ * component-scoped and carry the extra attribute selector.
+ */
+a:not(.btn) { color: var(--ce-magenta-text); }
+a:not(.btn):hover { color: var(--ce-magenta-hover); }
+.on-dark a:not(.btn) { color: var(--ce-magenta-text-dark); }
+.on-dark a:not(.btn):hover { color: var(--ce-magenta-light); }
+a { text-decoration: none; }
+
+button { cursor: pointer; font: inherit; color: inherit; }
+
+::selection { background: var(--ce-magenta); color: #fff; }
+
+/* Visible focus everywhere, but only for keyboard users. On dark grounds the
+   magenta ring is too low-contrast, so it flips to the ice tone. */
+:focus-visible { outline: 2px solid var(--ce-magenta); outline-offset: 3px; border-radius: 3px; }
+.on-dark :focus-visible { outline-color: var(--ce-ice); }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem;
+  z-index: 200;
+  background: var(--ce-magenta);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: var(--step-body-sm);
+  font-weight: 600;
+  transition: top 0.15s var(--ease);
+}
+.skip-link:focus { top: 0.5rem; color: #fff; }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--step-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--ce-magenta-text);
+  margin: 0;
+}
+.on-dark .eyebrow { color: var(--ce-magenta-text-dark); }
+
+/* How the brand punctuates: the full stop carries the accent. */
+.stop { color: var(--ce-magenta-text); }
+.on-dark .stop { color: var(--ce-magenta-text-dark); }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  font-family: inherit;
+  line-height: inherit;
+  border: 0;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 0.6875rem;
+  white-space: nowrap;
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+.btn--sm { font-size: var(--step-body-sm); padding: 0.6875rem 1.125rem; }
+.btn--md { font-size: var(--step-body-sm); padding: 0.875rem 1.375rem; }
+.btn--lg { font-size: 1rem; padding: 1.0625rem 1.875rem; }
+
+.btn--solid { background: var(--ce-magenta-solid); color: #fff; }
+.btn--solid:hover { background: var(--ce-magenta-hover); color: #fff; }
+
+.btn--outline {
+  color: var(--ce-ice);
+  border: 1px solid var(--line-dark-firm);
+  font-weight: 500;
+}
+.btn--outline:hover { background: rgba(246, 247, 251, 0.08); border-color: var(--ce-ice); color: var(--ce-ice); }
+
+/* "See if your show is available" cannot hold one line on the narrowest
+   phones; wrapping beats a horizontally scrolling page. */
+@media (max-width: 26rem) {
+  .btn { white-space: normal; }
+  .btn--lg { padding-inline: 1.25rem; }
+}
+
+/* ==========================================================================
+   Header
+
+   Static, not fixed. The hero underneath is the same purple, so the bar reads
+   as part of it — and nothing on this page needs to clear a fixed header,
+   which is one less thing for the modals to work around.
+   ========================================================================== */
+.site-head { background: var(--ce-purple); }
+.head-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 78px;
+  padding-block: 0.875rem;
+}
+.brand { color: var(--text-on-dark); display: block; flex: none; }
+.brand:hover { color: var(--text-on-dark); }
+.brand svg { height: 26px; width: auto; }
+
+.chip {
+  font-size: var(--step-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+  border: 1px solid var(--line-dark-firm);
+  border-radius: var(--radius-pill);
+  padding: 0.375rem 0.8125rem;
+  white-space: nowrap;
+}
+.head-cta { margin-left: auto; }
+
+/*
+ * The chip wraps to its own row rather than being hidden. It is the only thing
+ * above the fold that says the site is a holding page, and a phone is where
+ * most of this link's traffic will land — dropping it there removes the one
+ * piece of information the page exists to carry.
+ */
+@media (max-width: 34rem) {
+  .head-inner { flex-wrap: wrap; row-gap: 0.75rem; padding-block: 1rem; }
+  .chip { order: 3; width: 100%; text-align: center; }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  position: relative;
+  background: var(--ce-purple);
+  /* Ends just above the fold so a sliver of the logo wall shows and it is
+     obvious the page continues. `svh` rather than `vh` so mobile browser
+     chrome does not push the next section out of view. */
+  min-height: min(38rem, 82svh);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+/*
+ * The photo is wider than it is tall, so at desktop widths it fills
+ * horizontally and `object-position` has nothing to slide — the crop happens
+ * vertically. Shifting the frame itself is the only way to move the subject
+ * across, so the element overhangs to the right and the left edge takes the
+ * crop instead.
+ */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+@media (min-width: 62rem) {
+  /* `left` alone, with the width left at 100%. Setting both offsets and
+     `width: auto` looks equivalent but is not: the <img> has an intrinsic
+     aspect ratio, and against `height: 100%` that ratio wins the
+     over-constrained resolution, so the image shrinks and exposes the
+     background instead of sliding across. */
+  .hero-media { inset: 0 auto 0 11%; }
+}
+
+/* Brand wash: purple at the left, bleeding to magenta at the right. */
+.hero-wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, var(--ce-purple) 4%, rgba(32, 8, 66, 0.86) 44%, rgba(214, 62, 112, 0.42) 100%);
+}
+/* Grounds the text against the busiest part of the photograph. */
+.hero-foot {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 5, 2, 0.62), transparent 52%);
+}
+
+.hero-inner {
+  position: relative;
+  padding-block: clamp(3.5rem, 8vw, 6rem) clamp(2.25rem, 4.5vw, 3.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.625rem;
+}
+
+.hero-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-on-dark);
+}
+
+.hero-title {
+  font-weight: 700;
+  font-size: var(--step-hero);
+  line-height: 0.9;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-on-dark);
+  max-width: 15ch;
+}
+
+.hero-body {
+  font-size: var(--step-body-lg);
+  line-height: 1.65;
+  color: var(--text-on-dark-muted);
+  max-width: 58ch;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+/* ---- showreel control ----
+   Deliberately not a .btn: it sits lighter than the real CTA so it does not
+   compete with it. */
+.reel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ce-magenta-text-dark);
+  background: none;
+  border: 0;
+  padding: 0.5rem 0.25rem;
+  transition: color 0.15s var(--ease);
+}
+.reel:hover { color: var(--ce-magenta-light); }
+
+.reel-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--ce-magenta);
+  flex: none;
+}
+
+/*
+ * The pulse is decoration, so it is opt-in rather than suppressed later.
+ *
+ * The label pulses *brighter* rather than dimmer. Fading it out is the obvious
+ * move and the wrong one: --ce-magenta-text-dark is 5.59:1 on the purple, so
+ * anything below 0.9 opacity drops under the 4.5:1 AA floor for small text.
+ * Brightening toward #ff9ab8 runs 5.59:1 -> 8.99:1, so the animation can only
+ * ever improve contrast.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .reel-dot { animation: reel-pulse 1.8s var(--ease) infinite; }
+  .reel-label { animation: reel-glow 1.8s var(--ease) infinite; }
+  .reel:hover .reel-dot,
+  .reel:hover .reel-label { animation-duration: 1s; }
+}
+@keyframes reel-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(232, 98, 141, 0.6); }
+  70% { transform: scale(1.15); box-shadow: 0 0 0 0.5rem rgba(232, 98, 141, 0); }
+}
+@keyframes reel-glow {
+  0%, 100% { color: var(--ce-magenta-text-dark); }
+  70% { color: #ff9ab8; }
+}
+
+@media (max-width: 30rem) {
+  .hero-actions { width: 100%; }
+  .hero-actions .btn { flex: 1 1 100%; }
+  .reel { flex: 1 1 100%; justify-content: center; }
+}
+
+/* ==========================================================================
+   Logo wall
+   ========================================================================== */
+.wall { background: var(--ce-ice); padding-block: 3.375rem 3.625rem; }
+.wall-label {
+  font-size: var(--step-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-on-light-label);
+  text-align: center;
+  margin: 0 0 2.125rem;
+}
+.wall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+  gap: 1.875rem;
+  align-items: center;
+  justify-items: center;
+}
+.wall-mark {
+  height: 34px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.72;
+  transition: opacity 0.15s var(--ease);
+}
+.wall-mark:hover { opacity: 1; }
+/* White artwork would vanish on the ice ground. invert() runs before
+   grayscale(), so a coloured icon lands as mid-grey rather than its complement. */
+.wall-mark.is-inverted { filter: invert(1) grayscale(1); }
+
+/* ==========================================================================
+   Gallery strip — the reels live here
+   ========================================================================== */
+.strip {
+  background: var(--ce-black);
+  display: grid;
+  gap: 4px;
+  grid-template-columns: 1fr 1fr;
+  /* The CTA tile and the contact section below it are both --ce-purple, so
+     without this they merge into one block and the tile loses its edge. Same
+     4px as the gutters between tiles, so it reads as part of the grid rather
+     than as a border bolted on. */
+  padding-bottom: 4px;
+}
+@media (min-width: 62rem) {
+  .strip { grid-template-columns: 1.6fr 1fr 1fr; }
+}
+
+.tile { position: relative; margin: 0; overflow: hidden; min-height: 13rem; }
+.tile img { width: 100%; height: 100%; object-fit: cover; }
+
+/* The reveal shot is framed tight at the top; centring it cropped Dor's head. */
+.stack .tile img { object-position: 50% 0; }
+
+.tile--lead { grid-column: 1 / -1; height: 22rem; }
+@media (min-width: 62rem) { .tile--lead { grid-column: auto; height: 26.25rem; } }
+
+.stack { display: grid; grid-template-rows: 1fr 1fr; gap: 4px; }
+@media (min-width: 62rem) { .stack { height: 26.25rem; } }
+
+.tile-wash {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(32, 8, 66, 0.78), transparent 55%);
+}
+.tile-tint {
+  position: absolute; inset: 0;
+  background: linear-gradient(200deg, rgba(214, 62, 112, 0.32), transparent);
+}
+
+.tile figcaption { position: absolute; left: 2rem; bottom: 1.875rem; max-width: 34ch; }
+.tile-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.375rem, 2.4vw, 1.875rem);
+  color: var(--ce-ice);
+  line-height: 1.1;
+}
+.tile-meta {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+  margin-top: 0.5rem;
+}
+
+/* ---- play control ----
+   The whole tile is the hit target and the disc sits dead centre, which is the
+   convention every video thumbnail on the web uses. A small pill in the corner
+   reads as a caption rather than a control. */
+.tile-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.875rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ce-ice);
+  background: none;
+  border: 0;
+  padding: 1rem;
+  text-align: center;
+  transition: background-color 0.2s var(--ease);
+}
+.tile-play:hover,
+.tile-play:focus-visible { background: rgba(5, 5, 2, 0.32); }
+
+.tile-play-disc {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: rgba(5, 5, 2, 0.42);
+  border: 2px solid var(--ce-ice);
+  /* Lifts the disc off a busy photograph without darkening the whole tile. */
+  box-shadow: 0 0.25rem 1.25rem rgba(5, 5, 2, 0.45);
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.tile-play:hover .tile-play-disc,
+.tile-play:focus-visible .tile-play-disc {
+  background: var(--ce-magenta-solid);
+  border-color: var(--ce-magenta-light);
+  transform: scale(1.08);
+}
+
+/* Play triangle drawn with a border so it needs no asset. Nudged right by a
+   hair because a triangle's optical centre sits left of its bounding box. */
+.tile-play-icon {
+  width: 0;
+  height: 0;
+  margin-left: 0.1875rem;
+  border-style: solid;
+  border-width: 0.5rem 0 0.5rem 0.8125rem;
+  border-color: transparent transparent transparent var(--ce-ice);
+  transition: border-left-color 0.2s var(--ease);
+}
+.tile-play:hover .tile-play-icon { border-left-color: #fff; }
+
+.tile-play-label { text-shadow: 0 1px 0.5rem rgba(5, 5, 2, 0.8); }
+
+/* The lead tile carries its caption bottom-left, so shift the control up to
+   keep the two from colliding. */
+.tile--lead .tile-play { padding-bottom: 7rem; }
+@media (max-width: 62rem) {
+  .tile-play-disc { width: 3rem; height: 3rem; }
+  .tile--lead .tile-play { padding-bottom: 6rem; }
+}
+
+.tile--cta {
+  background: var(--ce-purple);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.625rem;
+  gap: 0.625rem;
+}
+.cta-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.375rem;
+  color: var(--ce-ice);
+  line-height: 1.15;
+}
+.cta-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ce-magenta-text-dark);
+}
+.cta-link:hover { color: var(--ce-magenta-light); }
+
+/* ==========================================================================
+   Contact
+
+   No form, on purpose. A form needs somewhere to post, and this page is
+   uploaded to static hosting with no endpoint behind it — a Send button that
+   silently drops an enquiry is worse than no form at all. The mailto carries a
+   prefilled subject and a template so the first message already says the
+   things I would have asked for anyway.
+   ========================================================================== */
+.contact { background: var(--ce-purple); padding-block: var(--section-y); }
+.contact-grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+@media (min-width: 56rem) {
+  .contact-grid { grid-template-columns: 1.15fr 1fr; }
+}
+
+.contact-title {
+  font-weight: 600;
+  font-size: var(--step-section);
+  line-height: 1.02;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-on-dark);
+  margin-top: 0.875rem;
+  max-width: 16ch;
+}
+.contact-body {
+  font-size: var(--step-body-lg);
+  line-height: 1.7;
+  color: var(--text-on-dark-muted);
+  margin-top: 1.125rem;
+  max-width: 52ch;
+}
+.contact-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.75rem; }
+
+.card {
+  background: rgba(246, 247, 251, 0.06);
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3.5vw, 2rem);
+}
+.card dl { margin: 0; display: grid; gap: 1.25rem; }
+.card dt {
+  font-size: var(--step-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-on-dark-faint);
+  margin-bottom: 0.25rem;
+}
+.card dd { margin: 0; font-size: var(--step-body); color: var(--text-on-dark); }
+.card dd a { word-break: break-word; }
+
+.contact-note {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line-dark);
+  font-size: var(--step-body-sm);
+  line-height: 1.7;
+  color: var(--text-on-dark-faint);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-foot { background: var(--ce-black); padding-block: 2.75rem 3rem; }
+.foot-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+}
+.foot-brand { color: var(--text-on-dark); display: block; }
+.foot-brand:hover { color: var(--text-on-dark); }
+.foot-brand svg { height: 22px; width: auto; }
+.foot-line { font-size: var(--step-body-sm); color: var(--text-on-dark-faint); }
+
+/* ==========================================================================
+   Reel modal
+
+   Opening, Escape and light-dismiss are the native popover API and cost
+   nothing. The one thing popover does not do is stop playback — a hidden
+   <video> keeps playing — which is what the script at the bottom of the page
+   is for, and the only JavaScript here.
+   ========================================================================== */
+.vmodal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.vmodal:popover-open { display: block; }
+.vmodal::backdrop { background: rgba(5, 5, 2, 0.9); }
+
+/*
+ * The click-outside target. `popover="auto"` light-dismisses only on a click
+ * *outside* the popover element, and this one spans the viewport so that never
+ * fires; a full-bleed button behind the panel restores it with no JavaScript.
+ * Out of the tab order and hidden from assistive tech on purpose — Escape and
+ * the visible close button already serve everyone else.
+ *
+ * Fixed, not absolute: an absolutely positioned child of a scroll container is
+ * sized against one viewport and leaves the rest of the scroll uncovered.
+ */
+.vmodal-scrim {
+  position: fixed;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: default;
+}
+
+.vmodal-inner {
+  position: relative;
+  z-index: 1;
+  width: min(64rem, calc(100% - (var(--gutter) * 2)));
+  margin: clamp(1.5rem, 6vh, 4rem) auto var(--gutter);
+}
+
+.vmodal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.vmodal-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  line-height: 1.1;
+  color: var(--text-on-dark);
+}
+.vmodal-close {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1px solid var(--line-dark-firm);
+  background: rgba(5, 5, 2, 0.5);
+  color: var(--text-on-dark);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: background-color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+.vmodal-close:hover { background: var(--ce-magenta-solid); border-color: transparent; }
+
+.vmodal-video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  background: #000;
+}
+.vmodal-fallback { padding: 1.5rem; color: var(--text-on-dark-muted); }
+
+/* ==========================================================================
+   Scroll reveal
+
+   Driven by the scroll position rather than by JavaScript: `animation-timeline:
+   view()` ties an element's animation to its own progress through the viewport,
+   so there is no observer, no listener and no bytes.
+
+   Opt-in via @supports, never opt-out. Written the other way round — hide by
+   default, reveal with the animation — a browser without scroll-driven
+   animations renders a blank page.
+
+   Movement only, no opacity: a fade paints text at partial contrast for the
+   length of the animation, and both axe and Lighthouse sample single frames, so
+   mid-fade text gets reported as a contrast failure even though it passes at
+   rest.
+
+   `animation-timeline` is kept in a rule of its own with a differently written
+   selector. Chrome does not accept a timeline inside the `animation` shorthand,
+   and a CSS minifier folds adjacent `animation` + `animation-timeline`
+   declarations into exactly that, which the browser then drops whole. Nothing
+   minifies this file today, but the two must not be merged if anything ever
+   does. The shorthand goes in the lower-specificity rule, because `animation`
+   resets `animation-timeline` to `auto` and would otherwise outrank the
+   explicit `view()`.
+   ========================================================================== */
+@keyframes reveal-rise {
+  from { transform: translateY(1.25rem); }
+  to { transform: none; }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    :where(.reveal) { animation: reveal-rise linear both; }
+    .reveal {
+      animation-timeline: view();
+      /* Finishes early on purpose: ranged to the middle of the viewport the
+         effect is a page that will not settle. */
+      animation-range: entry 5% cover 20%;
+    }
+  }
+}
+</style>
 </head>
-<body class="antialiased bg-pattern">
 
-    <!-- Header / Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-xl border-b border-purple-500/20">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold gradient-text">Dor Engel</a>
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#problem" class="nav-link">The Problem</a>
-                <a href="#solution" class="nav-link">The System</a>
-                <a href="#differentiator" class="nav-link">The Advantage</a>
-                <a href="#contact" class="btn-primary text-base py-3 px-6">Elevate Your Event</a>
-            </nav>
-            <div class="md:hidden">
-                <a href="#contact" class="btn-primary text-sm py-2 px-4">Contact</a>
-            </div>
-        </div>
-    </header>
+<body id="top">
+<a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Section 1: Hero -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden pt-20">
-        <div class="animated-bg"></div>
-        <div class="hero-video-container">
-            <video autoplay loop muted playsinline class="hero-video-bg">
-                <source src="static/Hero.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="relative z-10 px-6 max-w-5xl mx-auto flex flex-col items-center justify-center">
-            <div class="hero-glass-pane text-center">
-                <h1 class="hero-title mb-6">
-                    <span>Stop </span><span class="gradient-text">Crowds.</span><br>
-                    <span>Qualify </span><span class="gradient-text">Leads.</span><br>
-                    <span>Triple </span><span class="gradient-text">ROI.</span>
-                </h1>
-                <p class="hero-desc text-xl leading-relaxed max-w-3xl mx-auto mb-10">
-                    We turn your trade show booth into a high-performance lead generation engine. </br> 
-                    Stop competing for attention, start owning it.
-                </p>
-                <a href="#contact" class="btn-primary hero-cta text-lg">
-                    Elevate Your Next Event
-                </a>
-            </div>
-        </div>
-    </section>
+<!-- The wordmark, defined once and used twice. Lettering takes currentColor so
+     it works on any ground; the E keeps the brand magenta. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ce-wordmark" viewBox="0 0 710.13 132.23">
+    <g fill="currentColor">
+      <path d="M41.66,108.25h-17.83c-7.59,0-13.45-2.1-17.6-6.31-4.15-4.2-6.23-10.04-6.23-17.52v-51.2c0-7.58,2.07-13.45,6.23-17.6,4.15-4.15,10.02-6.23,17.6-6.23h17.83c7.48,0,13.32,2.08,17.53,6.23,4.2,4.15,6.3,10.02,6.3,17.6v7.38c0,1.85-.92,2.77-2.77,2.77h-9.69c-1.74,0-2.61-.92-2.61-2.77v-6.76c0-7.58-3.69-11.38-11.07-11.38h-13.37c-7.38,0-11.07,3.79-11.07,11.38v49.96c0,7.59,3.69,11.38,11.07,11.38h13.37c7.38,0,11.07-3.79,11.07-11.38v-6.76c0-1.84.87-2.77,2.61-2.77h9.69c1.85,0,2.77.92,2.77,2.77v7.38c0,7.48-2.1,13.32-6.3,17.52-4.2,4.2-10.04,6.31-17.53,6.31Z"/>
+      <path d="M118.84,108.25h-13.53c-7.59,0-13.45-2.1-17.6-6.31-4.15-4.2-6.23-10.04-6.23-17.52v-30.75c0-7.58,2.07-13.45,6.23-17.6s10.02-6.23,17.6-6.23h13.53c7.48,0,13.35,2.08,17.6,6.23,4.25,4.15,6.38,10.02,6.38,17.6v30.75c0,7.48-2.13,13.32-6.38,17.52-4.26,4.2-10.12,6.31-17.6,6.31ZM107.47,95.18h9.38c7.38,0,11.07-3.74,11.07-11.22v-29.83c0-7.48-3.69-11.22-11.07-11.22h-9.38c-3.9,0-6.71.9-8.46,2.69-1.75,1.79-2.61,4.64-2.61,8.53v29.83c0,3.9.87,6.74,2.61,8.53,1.74,1.8,4.56,2.69,8.46,2.69Z"/>
+      <path d="M172.81,108.25h-9.69c-1.74,0-2.61-.87-2.61-2.61V32.45c0-1.74.87-2.61,2.61-2.61h9.69c1.74,0,2.61.87,2.61,2.61v5.53h.62c2.46-5.43,7.63-8.15,15.53-8.15h6.76c7.48,0,13.22,2.05,17.22,6.15s6,9.99,6,17.68v51.96c0,1.74-.92,2.61-2.77,2.61h-9.69c-1.74,0-2.61-.87-2.61-2.61v-51.35c0-7.58-3.74-11.38-11.22-11.38h-7.23c-8.4,0-12.61,4.36-12.61,13.07v49.66c0,1.74-.87,2.61-2.61,2.61Z"/>
+      <path d="M263.67,29.84h12.91c1.85,0,2.77.82,2.77,2.46v7.99c0,1.74-.92,2.61-2.77,2.61h-12.91c-1.03,0-1.54.52-1.54,1.54v61.19c0,1.74-.92,2.61-2.77,2.61h-9.69c-1.74,0-2.61-.87-2.61-2.61v-61.19c0-1.02-.57-1.54-1.69-1.54h-8.15c-1.75,0-2.61-.87-2.61-2.61v-7.99c0-.92.18-1.56.54-1.92s1.05-.54,2.08-.54h8.15c1.13,0,1.69-.51,1.69-1.54v-4.46c0-7.58,1.95-13.43,5.84-17.53,3.89-4.1,9.58-6.15,17.07-6.15h6.76c1.74,0,2.61.82,2.61,2.46v7.99c0,1.74-.87,2.61-2.61,2.61h-4.61c-3.69,0-6.28.9-7.76,2.69-1.49,1.79-2.23,4.69-2.23,8.69v3.69c0,1.03.51,1.54,1.54,1.54Z"/>
+      <path d="M346.99,108.25h-33.21c-7.59,0-13.45-2.1-17.6-6.31-4.15-4.2-6.23-10.04-6.23-17.52v-30.75c0-7.58,2.08-13.45,6.23-17.6,4.15-4.15,10.02-6.23,17.6-6.23h12.61c7.58,0,13.48,2.08,17.68,6.23,4.2,4.15,6.3,10.02,6.3,17.6v19.53c0,1.84-.92,2.77-2.77,2.77h-41.2c-1.13,0-1.69.52-1.69,1.54v6.61c0,7.48,3.74,11.22,11.22,11.22h31.06c1.85,0,2.77.92,2.77,2.77v7.69c0,1.64-.92,2.46-2.77,2.46ZM306.41,65.5h27.52c1.02,0,1.54-.51,1.54-1.54v-9.84c0-3.89-.87-6.74-2.61-8.53s-4.56-2.69-8.46-2.69h-8.46c-3.9,0-6.71.9-8.46,2.69s-2.61,4.64-2.61,8.53v9.84c0,1.03.51,1.54,1.54,1.54Z"/>
+      <path d="M379.59,108.25h-9.69c-1.74,0-2.61-.87-2.61-2.61V32.45c0-1.74.87-2.61,2.61-2.61h9.69c1.74,0,2.61.87,2.61,2.61v5.84h.62c1.02-2.56,3-4.61,5.92-6.15,2.92-1.54,6.17-2.31,9.76-2.31h5.69c1.74,0,2.61.87,2.61,2.61v7.99c0,1.95-.87,2.77-2.61,2.46h-9.23c-8.51,0-12.76,4.66-12.76,13.99v48.74c0,1.74-.87,2.61-2.61,2.61Z"/>
+      <path d="M521.8,108.25h-7.84c-7.38,0-13.05-2.08-16.99-6.23-3.95-4.15-5.92-10.02-5.92-17.6v-30.75c0-7.69,1.97-13.58,5.92-17.68,3.94-4.1,9.61-6.15,16.99-6.15h7.84c7.89,0,13.01,2.72,15.37,8.15h.62V2.78c0-1.74.87-2.61,2.61-2.61h9.84c1.74,0,2.61.87,2.61,2.61v102.85c0,1.74-.87,2.61-2.61,2.61h-9.84c-1.74,0-2.61-.87-2.61-2.61v-5.53h-.62c-2.36,5.43-7.48,8.15-15.37,8.15ZM537.79,82.11v-26.14c0-8.71-4.2-13.07-12.61-13.07h-8.15c-7.38,0-11.07,3.79-11.07,11.38v29.52c0,7.59,3.69,11.38,11.07,11.38h8.15c8.4,0,12.61-4.35,12.61-13.07Z"/>
+      <path d="M600.82,104.4h-6.92c-7.38,0-13.05-2.07-16.99-6.23-3.95-4.15-5.92-10.02-5.92-17.6v-26.9c0-7.58,2.1-13.45,6.3-17.6,4.2-4.15,10.04-6.23,17.53-6.23h34.44c1.85,0,2.77.87,2.77,2.61v76.1c0,7.48-2.13,13.3-6.38,17.45-4.25,4.15-10.12,6.23-17.6,6.23h-28.9c-1.75,0-2.61-.82-2.61-2.46v-7.99c0-1.75.87-2.61,2.61-2.61h26.6c7.48,0,11.22-3.79,11.22-11.38v-11.68h-.62c-2.56,5.53-7.74,8.3-15.53,8.3ZM616.97,78.26v-33.82c0-1.02-.57-1.54-1.69-1.54h-18.3c-7.28,0-10.92,3.79-10.92,11.38v25.52c0,7.59,3.64,11.38,10.92,11.38h7.38c8.4,0,12.61-4.3,12.61-12.92Z"/>
+      <path d="M706.75,108.25h-33.21c-7.59,0-13.45-2.1-17.6-6.31-4.15-4.2-6.23-10.04-6.23-17.52v-30.75c0-7.58,2.07-13.45,6.23-17.6s10.02-6.23,17.6-6.23h12.61c7.58,0,13.48,2.08,17.68,6.23,4.2,4.15,6.3,10.02,6.3,17.6v19.53c0,1.84-.92,2.77-2.77,2.77h-41.2c-1.13,0-1.69.52-1.69,1.54v6.61c0,7.48,3.74,11.22,11.22,11.22h31.06c1.84,0,2.77.92,2.77,2.77v7.69c0,1.64-.92,2.46-2.77,2.46ZM666.16,65.5h27.52c1.02,0,1.54-.51,1.54-1.54v-9.84c0-3.89-.87-6.74-2.61-8.53-1.75-1.79-4.56-2.69-8.46-2.69h-8.46c-3.9,0-6.71.9-8.46,2.69-1.75,1.79-2.61,4.64-2.61,8.53v9.84c0,1.03.51,1.54,1.54,1.54Z"/>
+    </g>
+    <path fill="#d63e70" d="M421.88,15.02V2.61c0-1.74.87-2.61,2.61-2.61h49.2c1.64,0,2.46.87,2.46,2.61v7.84c0,1.74-.82,2.61-2.46,2.61h-35.05c-1.23,0-1.85.51-1.85,1.53M436.79,24.16v25.98c0,1.03.62,1.54,1.85,1.54h29.67c1.85,0,2.77.87,2.77,2.61v7.84c0,1.74-.92,2.61-2.77,2.61h-29.67c-1.23,0-1.85.52-1.85,1.54v27.37c0,1.13.62,1.69,1.85,1.69h35.05c1.64,0,2.46.87,2.46,2.61v7.84c0,1.74-.82,2.61-2.46,2.61h-49.2c-1.75,0-2.61-.87-2.61-2.61V24.57"/>
+  </symbol>
+</svg>
 
-    <!-- Section 2: "As Seen On" & "Trusted At" Bar -->
-    <section id="logos" class="py-20 section-bg-alt relative">
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
-            <h3 class="text-center text-purple-400 text-sm font-semibold uppercase tracking-widest mb-12 code-font">AS SEEN ON & TRUSTED BY <br>(both entertainment and conference clients)</h3>
-            <div class="logo-ticker-container">
-                <div class="logo-ticker-track">
-                    <!-- First set of logos -->
-                    <div class="logo-container">
-                        <img src="static/logos/international-business-times.png" alt="International Business Times Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/generic-logo.png" alt="Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/ionix-logo.png" alt="Ionix Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/company-logo-1.png" alt="Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/reline-logo.png" alt="Reline Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/company-logo-2.png" alt="DoiT Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/databand-logo.png" alt="Databand Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/entitle-logo.png" alt="Entitle Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/company-logo-3.png" alt="Logo">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/blue-emblem-logo.png" alt="Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/qmasters-logo.svg" alt="Qmasters Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/Buildots_Logo_RGB_BlackYellow.webp" alt="Buildots Logo" class="logo-image">
-                    </div>
-                    <!-- Duplicate set for infinite scroll -->
-                    <div class="logo-container">
-                        <img src="static/logos/international-business-times.png" alt="International Business Times Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/generic-logo.png" alt="Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/ionix-logo.png" alt="Ionix Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/company-logo-1.png" alt="Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/reline-logo.png" alt="Reline Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/company-logo-2.png" alt="DoiT Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/databand-logo.png" alt="Databand Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/entitle-logo.png" alt="Entitle Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/company-logo-3.png" alt="Logo">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/blue-emblem-logo.png" alt="Logo" class="logo-image">
-                    </div>
-                    <div class="logo-container">
-                        <img src="static/logos/qmasters-logo.svg" alt="Qmasters Logo" class="logo-image">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<header class="site-head on-dark">
+  <div class="container head-inner">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 710.13 132.23" role="img" aria-label="ConferEdge — home"><use href="#ce-wordmark"/></svg>
+    </a>
+    <p class="chip">Full site coming soon</p>
+    <a class="btn btn--solid btn--sm head-cta" href="#contact">Get in touch</a>
+  </div>
+</header>
 
-    <!-- Section 3: The Problem -->
-    <section id="problem" class="py-24 section-bg-alt relative">
-        <div class="animated-bg"></div>
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
-            <h2 class="section-title">The Exhibitor's Challenge:<br><span class="gradient-text">Maximizing Event Impact.</span></h2>
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-                    <img src="static/gallery-event-1.jpeg" alt="Busy trade show floor" class="relative rounded-3xl shadow-2xl transform group-hover:scale-105 transition-all duration-500">
-                </div>
-                <div class="space-y-6">
-                    <div class="clean-card p-8">
-                        <p class="text-gray-300 leading-relaxed text-lg">
-                            You spend a fortune on event sponsorships, but hazy ROI and "hope-and-pray" metrics create constant anxiety. It's a black box you can't afford.
-                        </p>
-                    </div>
-                    <div class="clean-card p-8">
-                        <p class="text-gray-300 leading-relaxed text-lg">
-                            Your booth has incredible potential to captivate audiences and attract high-value buyers. The key is creating memorable experiences that make prospects choose you over competitors.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<main id="main">
 
-    <!-- Section 4: The Solution -->
-    <section id="solution" class="py-24 section-bg relative">
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
-            <h2 class="section-title">A Proven System for<br><span class="gradient-text">Predictable Pipeline.</span></h2>
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="space-y-8">
-                    <p class="text-gray-300 text-xl leading-relaxed">
-                        Stop gambling on event marketing. Our proven 4-step system turns your booth into a magnet for qualified buyers and a predictable source of revenue.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="clean-card step-card p-6 flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl flex items-center justify-center font-bold text-white text-lg">1</div>
-                            <div>
-                                <h3 class="font-semibold text-white mb-2 text-lg">Stop the Traffic</h3>
-                                <p class="step-desc text-base">We use world-class, tech-themed mentalism to create an irresistible spectacle that stops your ideal prospects in their tracks.</p>
-                            </div>
-                        </div>
-                        <div class="clean-card step-card p-6 flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-cyan-600 to-pink-600 rounded-xl flex items-center justify-center font-bold text-white text-lg">2</div>
-                            <div>
-                                <h3 class="font-semibold text-white mb-2 text-lg">Deliver Your Message</h3>
-                                <p class="step-desc text-base">Your key value propositions are woven into a customized, mind-bending performance that embeds your product in the minds of your audience.</p>
-                            </div>
-                        </div>
-                        <div class="clean-card step-card p-6 flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-pink-600 to-purple-600 rounded-xl flex items-center justify-center font-bold text-white text-lg">3</div>
-                            <div>
-                                <h3 class="font-semibold text-white mb-2 text-lg">Identify Real Buyers</h3>
-                                <p class="step-desc text-base">Leveraging deep tech expertise, we engage attendees in credible technical conversations to separate the curious from the committed.</p>
-                            </div>
-                        </div>
-                        <div class="clean-card step-card p-6 flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl flex items-center justify-center font-bold text-white text-lg">4</div>
-                            <div>
-                                <h3 class="font-semibold text-white mb-2 text-lg">Handoff to Sales</h3>
-                                <p class="step-desc text-base">We deliver pre-qualified, educated prospects directly to your sales team, primed for a meaningful demo and a shorter sales cycle.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-                    <div class="relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-105 transition-all duration-500">
-                        <img src="static/gallery-performance-1.jpeg" alt="Conferedge performance engaging a crowd at a trade show" class="w-full h-full object-cover">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!--
+    A still, deliberately. The clip that exists for a hero loop is a time-lapse
+    of a mini-show — good footage, wrong job for a background that has to sit
+    under a headline. The reels live in the modals instead.
+  -->
+  <section class="hero on-dark">
+    <img
+      class="hero-media"
+      src="assets/hero-1920.jpg"
+      srcset="assets/hero-1280.jpg 1280w, assets/hero-1920.jpg 1920w"
+      sizes="100vw"
+      width="1920" height="1148"
+      alt=""
+      fetchpriority="high">
+    <div class="hero-wash" aria-hidden="true"></div>
+    <div class="hero-foot" aria-hidden="true"></div>
 
-    <!-- Section 5: The Differentiator -->
-    <section id="differentiator" class="py-24 section-bg-alt relative">
-        <div class="animated-bg"></div>
-        <!-- Background image with overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="static/12469_MW_-133.jpg" alt="Dor Engel in a conversational interaction" class="w-full h-full object-cover opacity-40">
-            <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-black/50 to-black/40"></div>
-        </div>
-        
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <h2 class="section-title">Our Unfair Advantage:<br><span class="gradient-text">We Speak Tech.</span></h2>
-            
-            <div class="clean-card p-12 space-y-6 backdrop-blur-md bg-black/60 border-white/30">
-                <p class="text-gray-200 leading-relaxed text-lg font-medium">
-                    Any entertainer can memorize a script. But can they intelligently discuss a <span class="code-font text-cyan-400">"multi-tenant data residency architecture"</span> with a CTO and earn their respect?
-                </p>
-                <p class="text-gray-200 leading-relaxed text-lg font-medium">
-                    With a vast background in cybersecurity in the tech industry, Dor Engel doesn't just perform - he understands. This technical credibility is what sets us apart. It's the ability to have genuine conversations, building trust and qualifying leads through authentic expertise.
-                </p>
-                <p class="text-gray-200 leading-relaxed text-lg font-medium">
-                    <span class="font-semibold text-white">Proven at premier events:</span> AWS Summit Tel Aviv, and Google Cloud Day Tel Aviv - where technical depth and entertainment excellence converge.
-                </p>
-            </div>
-        </div>
-    </section>
+    <div class="container hero-inner">
+      <p class="hero-eyebrow">Engagement engineering for conferences</p>
+      <h1 class="hero-title">At conferences you pay for opportunity<span class="stop">.</span> Let's turn it into pipeline<span class="stop">.</span></h1>
+      <p class="hero-body">
+        A live, interactive performance built around your positioning - with initial
+        qualification and handoff to your sales team. Performed at your booth,
+        adapted in real time to how the floor is moving.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn--solid btn--lg" href="#contact">See if your show is available</a>
+        <button type="button" class="reel" popovertarget="reel-rsac">
+          <span class="reel-dot" aria-hidden="true"></span>
+          <span class="reel-label">See it in action</span>
+        </button>
+      </div>
+    </div>
+  </section>
 
-    <!-- Section 6: Partnership Tiers -->
-    <section id="tiers" class="py-24 section-bg relative">
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
-            <h2 class="section-title">A Partnership Model for<br><span class="gradient-text">Predictable Success.</span></h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Booth Buzz Card -->
-                <div class="tier-card text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-gray-500 to-gray-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <h3>Booth Buzz</h3>
-                    <p>Generate significant buzz and foot traffic with world-class, customized infotainment that weaves your core message into an unforgettable experience.</p>
-                </div>
-                <!-- Lead Accelerator Card -->
-                <div class="tier-card text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                        </svg>
-                    </div>
-                    <h3>Lead Accelerator</h3>
-                    <p>Elevate from buzz to business. Includes strategic pre-show consulting on booth design, messaging, and lead capture to maximize qualified conversations.</p>
-                </div>
-                <!-- Pipeline Partner Card -->
-                <div class="tier-card text-center">
-                    <div class="w-16 h-16 bg-gradient-to-r from-cyan-600 to-pink-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <h3>Pipeline Partner</h3>
-                    <p>A complete end-to-end solution. We act as an extension of your team, providing staff training and executing creative marketing activations to build a robust sales pipeline.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section class="wall" aria-label="Clients">
+    <div class="container">
+      <p class="wall-label">Trusted on the floor by</p>
+      <ul class="wall-grid reveal">
+        <li><img class="wall-mark" src="assets/logos/aws.png" alt="AWS" height="34" loading="lazy"></li>
+        <li><img class="wall-mark" src="assets/logos/doit.png" alt="DoiT" height="34" loading="lazy"></li>
+        <li><img class="wall-mark" src="assets/logos/descope.png" alt="Descope" height="34" loading="lazy"></li>
+        <!-- White artwork: inverted so it is visible on the ice ground. -->
+        <li><img class="wall-mark is-inverted" src="assets/logos/imper.png" alt="imper.ai" height="34" loading="lazy"></li>
+        <li><img class="wall-mark is-inverted" src="assets/logos/airfleet.png" alt="Airfleet" height="34" loading="lazy"></li>
+        <li><img class="wall-mark" src="assets/logos/zimark.png" alt="Zimark" height="34" loading="lazy"></li>
+      </ul>
+    </div>
+  </section>
 
-    <!-- Section 7: Photo Gallery -->
-    <section id="gallery" class="py-24 section-bg-alt relative">
-        <div class="animated-bg"></div>
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
-            <h2 class="section-title">The Engagement<br><span class="gradient-text">in Action.</span></h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="gallery-item">
-                    <img src="static/gallery-performance-1.jpeg" alt="Gallery Image 1 - Dor Engel performing" class="w-full h-48 object-cover">
-                </div>
-                <div class="gallery-item">
-                    <img src="static/gallery-performance-2.jpeg" alt="Gallery Image 2 - Interactive performance" class="w-full h-48 object-cover">
-                </div>
-                <div class="gallery-item">
-                    <img src="static/gallery-event-1.jpeg" alt="Gallery Image 3 - Event engagement" class="w-full h-48 object-cover">
-                </div>
-                <div class="gallery-item">
-                    <img src="static/gallery-event-2.jpeg" alt="Gallery Image 4 - Booth interaction" class="w-full h-48 object-cover">
-                </div>
-            </div>
-        </div>
-    </section>
+  <!--
+    Each tile gets its own modal rather than one modal swapping its source,
+    which keeps the whole thing free of JavaScript — a shared modal would need
+    a script to know which reel to load.
+  -->
+  <section class="strip" aria-label="On the floor">
+    <figure class="tile tile--lead">
+      <img src="assets/hero-1280.jpg" alt="Dor Engel performing to a crowd on a conference floor" width="1280" height="766" loading="lazy">
+      <div class="tile-wash" aria-hidden="true"></div>
+      <button type="button" class="tile-play" popovertarget="reel-aidev">
+        <span class="tile-play-disc" aria-hidden="true"><span class="tile-play-icon"></span></span>
+        <span class="tile-play-label">Google AIDev 2025</span>
+        <span class="visually-hidden">— watch the reel</span>
+      </button>
+      <figcaption>
+        <p class="tile-title">Three days, one floor, no wasted passers-by</p>
+        <p class="tile-meta">Conference floor · 2026</p>
+      </figcaption>
+    </figure>
 
-    <!-- Section 8: Contact -->
-    <section id="contact" class="py-24 section-bg relative">
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <h2 class="section-title">Ready to Own Your<br><span class="gradient-text">Next Event?</span></h2>
-            <p class="text-lg text-gray-300 mb-12 leading-relaxed">The fastest way to see if we're a fit is a brief, 20-minute discovery call. Let's build a strategy that transforms your presence into exceptional results.</p>
-            <div class="contact-form p-12 text-center">
-                <a href="https://calendly.com/dorengel/20-minute-meeting-with-dor" target="_blank" rel="noopener noreferrer" class="btn-primary text-xl px-12 py-5 inline-block transition-transform hover:scale-105">
-                    Book Your 20-Min Call
-                </a>
-                <p class="mt-8 text-gray-400">
-                    Prefer email? <a href="mailto:info@dorengel.com" class="text-purple-400 hover:text-purple-300 underline transition-all">Reach out directly</a>.
-                </p>
-            </div>
-        </div>
-    </section>
+    <figure class="tile">
+      <img src="assets/booth.jpg" alt="Attendees gathered at a technology booth" width="900" height="600" loading="lazy">
+      <div class="tile-tint" aria-hidden="true"></div>
+      <button type="button" class="tile-play" popovertarget="reel-rsac">
+        <span class="tile-play-disc" aria-hidden="true"><span class="tile-play-icon"></span></span>
+        <span class="tile-play-label">RSAC 2026</span>
+        <span class="visually-hidden">— watch the reel</span>
+      </button>
+    </figure>
 
-    <!-- Footer -->
-    <footer>
-        <div class="max-w-6xl mx-auto px-6 py-12 text-center">
-            <p class="text-lg">&copy; 2024 Dor Engel. All Rights Reserved.</p>
-            <div class="mt-6 flex justify-center items-center space-x-8">
-                <a href="mailto:info@dorengel.com" class="hover:text-purple-400 transition-all duration-300 font-medium">info@dorengel.com</a>
-                <span class="text-gray-600">&bull;</span>
-                <a href="https://www.linkedin.com/in/dor-engel/" target="_blank" rel="noopener noreferrer" class="hover:text-purple-400 transition-all duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
-                </a>
-            </div>
-        </div>
-    </footer>
+    <div class="stack">
+      <figure class="tile">
+        <img src="assets/reveal.jpg" alt="A live reveal at a conference booth" width="900" height="600" loading="lazy">
+      </figure>
+      <div class="tile tile--cta on-dark">
+        <p class="cta-title">See it on the floor</p>
+        <a class="cta-link" href="#contact">Book a walkthrough &rarr;</a>
+      </div>
+    </div>
+  </section>
 
+  <section class="contact on-dark" id="contact">
+    <div class="container contact-grid">
+      <div class="reveal">
+        <p class="eyebrow">Check availability</p>
+        <h2 class="contact-title">Reach Me Directly<span class="stop">.</span></h2>
+        <p class="contact-body">
+          Give me the show and the stand size, and I'll tell you whether this
+          is worth your budget.
+        </p>
+        <div class="contact-actions">
+          <a class="btn btn--solid btn--lg"
+             href="mailto:info@dorengel.com?subject=Booth%20engagement%20%E2%80%94%20availability&amp;body=Show%20and%20dates%3A%0AStand%20size%3A%0AWhat%20you%27re%20launching%3A%0A%0A">Email me</a>
+          <a class="btn btn--outline btn--lg" href="https://www.linkedin.com/in/dor-engel/" rel="me noopener">Message on LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <dl>
+          <div>
+            <dt>Email</dt>
+            <dd><a href="mailto:info@dorengel.com">info@dorengel.com</a></dd>
+          </div>
+          <div>
+            <dt>LinkedIn</dt>
+            <dd><a href="https://www.linkedin.com/in/dor-engel/" rel="me noopener">Dor Engel</a></dd>
+          </div>
+          <div>
+            <dt>Based in</dt>
+            <dd>Tel Aviv · Working globally</dd>
+          </div>
+        </dl>
+        <p class="contact-note">
+          The full site - the programme, the method and the writing behind it, lands
+          shortly. Until then this is the fastest way in, and it reaches me directly.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot on-dark">
+  <div class="container foot-inner">
+    <a class="foot-brand" href="#top">
+      <svg viewBox="0 0 710.13 132.23" role="img" aria-label="ConferEdge"><use href="#ce-wordmark"/></svg>
+    </a>
+    <p class="foot-line">Engagement Engineering for B2B high-tech conferences</p>
+    <p class="foot-line">&copy; 2026 ConferEdge</p>
+  </div>
+</footer>
+
+<!--
+  The reels.
+
+  Native <video> against Bunny Stream's MP4 fallback, not Bunny's iframe
+  player: the player is a third-party script and an iframe, and it would ship
+  more code than the rest of this page put together. The MP4 URL is a plain
+  file, so the browser's own player does the work.
+
+  `preload="none"` matters more than usual here. Both modals are in the DOM on
+  page load; without it the browser would start fetching two large files for
+  modals most visitors never open, and the poster alone renders the closed state.
+
+  720p on purpose: this plays in a modal at most 64rem wide, where 1080p costs
+  roughly double the bytes for a difference nobody sees, and it starts
+  noticeably faster on a phone.
+-->
+<div id="reel-rsac" popover="auto" class="vmodal on-dark" aria-labelledby="reel-rsac-title">
+  <button type="button" class="vmodal-scrim" popovertarget="reel-rsac" popovertargetaction="hide" tabindex="-1" aria-hidden="true"></button>
+  <div class="vmodal-inner">
+    <div class="vmodal-head">
+      <h2 id="reel-rsac-title" class="vmodal-title">RSAC 2026</h2>
+      <button type="button" class="vmodal-close" popovertarget="reel-rsac" popovertargetaction="hide" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <video class="vmodal-video" controls playsinline preload="none" width="1280" height="720"
+           poster="https://vz-0da96aab-a6a.b-cdn.net/30b17143-ce53-47c9-a7c0-3517d25604ed/thumbnail.jpg">
+      <source src="https://vz-0da96aab-a6a.b-cdn.net/30b17143-ce53-47c9-a7c0-3517d25604ed/play_720p.mp4" type="video/mp4">
+      <p class="vmodal-fallback">Your browser cannot play this video.
+        <a href="https://vz-0da96aab-a6a.b-cdn.net/30b17143-ce53-47c9-a7c0-3517d25604ed/play_720p.mp4">Download the clip</a> instead.</p>
+    </video>
+  </div>
+</div>
+
+<div id="reel-aidev" popover="auto" class="vmodal on-dark" aria-labelledby="reel-aidev-title">
+  <button type="button" class="vmodal-scrim" popovertarget="reel-aidev" popovertargetaction="hide" tabindex="-1" aria-hidden="true"></button>
+  <div class="vmodal-inner">
+    <div class="vmodal-head">
+      <h2 id="reel-aidev-title" class="vmodal-title">Google AIDev 2025</h2>
+      <button type="button" class="vmodal-close" popovertarget="reel-aidev" popovertargetaction="hide" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <video class="vmodal-video" controls playsinline preload="none" width="1280" height="720"
+           poster="https://vz-0da96aab-a6a.b-cdn.net/b81587b9-5a00-4fb4-b0d6-630441afb8ca/thumbnail.jpg">
+      <source src="https://vz-0da96aab-a6a.b-cdn.net/b81587b9-5a00-4fb4-b0d6-630441afb8ca/play_720p.mp4" type="video/mp4">
+      <p class="vmodal-fallback">Your browser cannot play this video.
+        <a href="https://vz-0da96aab-a6a.b-cdn.net/b81587b9-5a00-4fb4-b0d6-630441afb8ca/play_720p.mp4">Download the clip</a> instead.</p>
+    </video>
+  </div>
+</div>
+
+<script>
+/*
+ * The only JavaScript on this page: stop playback when a modal closes.
+ *
+ * The popover API hides the element but does not touch the media inside it, so
+ * without this the audio carries on over the page after a light-dismiss or
+ * Escape. Resetting currentTime as well means reopening starts from the top
+ * rather than resuming mid-sentence.
+ *
+ * `toggle` is the popover event and fires for every close, however it was
+ * triggered — button, Escape, or a click on the scrim.
+ *
+ * Everything else here works with scripting disabled: the modals still open,
+ * still close, and the reels still play.
+ */
+for (const modal of document.querySelectorAll('.vmodal')) {
+  modal.addEventListener('toggle', (e) => {
+    if (e.newState === 'open') return;
+    const v = modal.querySelector('video');
+    if (!v) return;
+    v.pause();
+    v.currentTime = 0;
+  });
+}
+</script>
 </body>
 </html>
